@@ -3,15 +3,27 @@ import { GreetingCard } from './GreetingCard'
 
 function GreetingSidebar() {
     return (
-        <div >
-            <div className='w-[90%] mx-auto my-4 text-md font-bold text-gray-700'>ვულოცავთ დაბადების დღეს</div>
-            <GreetingCard ></GreetingCard>
-            <GreetingCard ></GreetingCard>
-            <GreetingCard ></GreetingCard>
-            {/* <GreetingCard ></GreetingCard>
-            <GreetingCard ></GreetingCard>
-            <GreetingCard ></GreetingCard>
-            <GreetingCard ></GreetingCard> */}
+        <div className=''>
+            <div className=' w-[100%] mx-auto py-4 pl-4 text-md font-bold text-gray-700 bg-[#f5f6f7]'>
+                ვულოცავთ დაბადების დღეს
+            </div>
+            <div className=''>
+                <GreetingCard ></GreetingCard>
+                <GreetingCard ></GreetingCard>
+                <GreetingCard ></GreetingCard>
+
+                {/* <GreetingCard ></GreetingCard>
+                <GreetingCard ></GreetingCard>
+                <GreetingCard ></GreetingCard>
+                <GreetingCard ></GreetingCard>
+                <GreetingCard ></GreetingCard>
+                <GreetingCard ></GreetingCard>
+                <GreetingCard ></GreetingCard>
+                <GreetingCard ></GreetingCard>
+                <GreetingCard ></GreetingCard> */}
+                
+            </div>
+            <div className='h-screen'></div>
         </div>
     )
 }

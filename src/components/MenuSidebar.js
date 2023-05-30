@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 function MenuSidebar() {
     return (
         <>
-            <section >
+            <section className="mt-3 ">
                 <div className="flex flex-col justify-center m-2 text-md font-normal whitespace-nowrap text-gray-800 ">
                     <Link to={'/'} >
                         {/* <Button title='თანამშრომლების სია'/> */}
                         <div className='mb-2 pb-3 hover:text-[#f56a6a] border-b-[1px] border-[#a8abad]'>თანამშრომლების სია</div>
                     </Link>
-                    <Link to={'/'} >
+                    <Link to={'/branchlist/'} >
                         <div className='mb-2 pb-3 hover:text-[#f56a6a] border-b-[1px] border-[#a8abad]'>ფილიალები</div>
                     </Link>
                     <Link to={'/'} >

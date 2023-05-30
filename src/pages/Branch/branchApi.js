@@ -26,3 +26,15 @@ if(!response.ok) {
 return await response.json()
 }
 // ---------------------------------- Create Branch ------------------------------------
+
+
+// ---------------------------------- Branch List Pagination----------------------------
+export const getPagedBranchList = async (pageNumber) => {
+  const response = await fetch(`https://localhost:7071/api/Branch/allBranches?PageNumber=${pageNumber}`);
+  if (!response.ok) {
+    throw new Error("Something went wrong.");
+  }
+  return await response.json()
+}
+// ---------------------------------- Branch List Pagination----------------------------
+

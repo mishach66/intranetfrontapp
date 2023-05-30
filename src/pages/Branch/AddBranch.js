@@ -4,11 +4,12 @@ import { Card, Input, Checkbox, Button as MTButton, Typography, Textarea } from 
 import { Button } from '../../components/Button'
 import { useForm, useController } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import * as Loader from "react-loader-spinner"
 import { useQuery, QueryClient, useQueries, useMutation, useQueryClient } from "@tanstack/react-query"
 import Select, { StylesConfig } from 'react-select'
-import { getAllCities } from './branchApi';
-import { createBranch } from './branchApi';
+import { getAllCities } from './branchApi'
+import { createBranch } from './branchApi'
 
 function AddBranch() {
     const queryClient = useQueryClient()
@@ -47,9 +48,17 @@ function AddBranch() {
     const capitalCity = options.splice(findCapitalCityIdx, 1)
     options = capitalCity.concat(options)
 
-    const { mutateAsync, isLoading: isMutatingBranchAdd } = useMutation(createBranch, {onSuccess: () => {
-        // queryClient.invalidateQueries(['allnews'])
-    }})
+    const { mutateAsync, isLoading: isMutatingBranchAdd } = useMutation(createBranch, {
+        onSuccess: () => {
+            // queryClient.invalidateQueries(['allnews'])
+            toast.success('ფილიალი წარმატებით დაემატა', {
+                theme: 'colored'
+            })},
+        onError: () => {
+            toast.error('ფილიალის დამატებისას მოხდა შეცდომა!', {
+                theme: 'colored'
+            })}
+    })
 
     const onSubmit = async (data) => {
         await mutateAsync({
@@ -97,7 +106,10 @@ function AddBranch() {
                             placeholder: (defaultStyles) => ({ ...defaultStyles, color: "#607d8b" }),
                         }}
                         className='select-input text-sm text-[#455a64] '
-                        
+
+                        {...register('city', {
+                            required: true,
+                        })}
                         placeholder="ქალაქი"
                         isClearable
                         isSearchable
@@ -108,6 +120,9 @@ function AddBranch() {
                         onChange={option => cityOnChange(option ? option.value : option)}
                         {...restCityField}
                     />
+                    {errors.city && errors.city.type === 'required' && (
+                        <p className='text-red-500 font-bold'>გთხოვთ, მიუთითოთ ქალაქი</p>
+                    )}
 
                     <Input size="lg" label="მისამართი" className='text-[#607d8b] ' {...register('address', {
                             required: true,

@@ -26,7 +26,7 @@ const NewsList = () => {
     
     if(isLoading) {
         return (
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-16">
                 {/* <Loader.ThreeDots color="#74adf2" height={30} /> */}
                 {/* <Loader.ThreeDots color="red" radius='9' height="80" width="120" /> */}
                 <Loader.ThreeCircles color="red" height="100" width="100" />

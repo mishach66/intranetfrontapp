@@ -63,7 +63,7 @@ function GetNewsById() {
                 theme: 'colored'
             })},
         onError: () => {
-            toast.error('წაშლისას მოხდა შეცდომა!', {
+            toast.error('სიახლის წაშლისას მოხდა შეცდომა!', {
                 theme: 'colored'
             })}
     })

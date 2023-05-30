@@ -22,7 +22,7 @@ export const Navbar = () => {
 
 return (
     
-  <nav className="bg-[#252930] opacity-95 border-gray-200 dark:bg-gray-900">
+  <nav className=" bg-[#252930] opacity-100 border-gray-200 dark:bg-gray-900">
     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     {/* <a href="http://localhost:3000/" className="flex items-center">
         <img src={logo} className="h-32 mr-5 rounded-full" alt="Uni Logo" />
