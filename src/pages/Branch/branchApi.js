@@ -38,3 +38,21 @@ export const getPagedBranchList = async (pageNumber) => {
 }
 // ---------------------------------- Branch List Pagination----------------------------
 
+// ---------------------------------- Edit Branch ------------------------------------
+export const editBranch = async (data) => {
+  console.log('api data is ', data)
+  const response = await fetch(`https://localhost:7071/api/Branch/editBranch/${data.id}`, {
+  method: "PUT",
+  headers: {
+      "Content-Type": "application/json"
+  },
+  body: JSON.stringify(data)
+})
+
+if(!response.ok) {
+  throw new Error(response.json().message)
+}
+
+return await response.json()
+}
+// ---------------------------------- Edit Branch ------------------------------------

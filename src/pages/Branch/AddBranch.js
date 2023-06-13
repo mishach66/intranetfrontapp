@@ -8,8 +8,7 @@ import { toast } from 'react-toastify'
 import * as Loader from "react-loader-spinner"
 import { useQuery, QueryClient, useQueries, useMutation, useQueryClient } from "@tanstack/react-query"
 import Select, { StylesConfig } from 'react-select'
-import { getAllCities } from './branchApi'
-import { createBranch } from './branchApi'
+import { getAllCities, createBranch } from './branchApi'
 
 function AddBranch() {
     const queryClient = useQueryClient()

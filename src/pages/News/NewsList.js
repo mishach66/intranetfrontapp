@@ -37,7 +37,7 @@ const NewsList = () => {
     }
 
     return(
-        <div className="bg-slate-400">
+        <div className="">
             {
                 data?.map(({author, title, content, id}) => (
 

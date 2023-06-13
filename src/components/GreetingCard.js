@@ -9,7 +9,7 @@ const GreetingCard = (props) => {
                 </div>
             </div>
             <div className='bg-white w-4/6'>
-                <div className="my-2 text-xs">ვენერა ბოტიჩელი</div>
+                <div className="my-2 text-xs">სახელი გვარი</div>
                 <div className="my-2 text-xs">32 მაისი</div>
                 <div className="my-2 text-xs">1234</div>
             </div>

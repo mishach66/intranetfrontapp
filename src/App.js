@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { Layout } from './components/Layout'
 import { Route, Routes } from "react-router-dom"
 import BranchList from './pages/Branch/BranchList'
+import { EditBranch } from './pages/Branch/EditBranch'
 
 function App() {
 
@@ -34,12 +35,11 @@ function App() {
           <Route path='/newsById/:id' element={<GetNewsById />} />
           <Route path='/addNews/' element={<CreateNews />} />
           <Route path='/editNews/:id' element={<EditNews />} />
+
           <Route path='/addBranch/' element={<AddBranch />} />
           <Route path='/branchlist/' element={<BranchList />} />
-          {/* <Route path=':id' element={<PostPage />} /> */}
-          {/* <Route path=':id/edit' element={<EditPostPage />} /> */}
-          {/* <Route path='register' element={<RegisterPage />} /> */}
-          {/* <Route path='login' element={<LoginPage />} /> */}
+          <Route path='/editBranch/:id' element={<EditBranch />} />
+
         </Routes>
         <ToastContainer position='bottom-right' autoClose={3000}/>
       </Layout>

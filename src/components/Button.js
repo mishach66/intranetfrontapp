@@ -3,7 +3,7 @@ import React from "react";
 const Button = (props) => {
 
     const handlerClick = () => {
-        //console.log('Button handlerClick')
+        //console.log({...props})
         if (props.onClick) {
             props.onClick()
         }
