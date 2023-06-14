@@ -92,8 +92,20 @@ function EditNews() {
                             <p className='text-red-500 font-bold'>სათაური უნდა იყოს 10 სიმბოლოზე მეტი</p>
                         )}
 
-                        <Input size="lg" label="ავტორი" defaultValue={data?.author} {...register('author')} />
-                        <Textarea label='ტექსტი' rows={12} defaultValue={data?.content} {...register('content')}></Textarea>
+                        <Input size="lg" name='author' label="ავტორი" defaultValue={data?.author} {...register('author', {
+                            required: true,
+                        })} />
+                        {errors.author && errors.author.type === 'required' && (
+                            <p className='text-red-500 font-bold'>გთხოვთ, მიუთითოთ ავტორი</p>
+                        )}
+
+                        <Textarea label='ტექსტი' rows={12} defaultValue={data?.content} {...register('content', {
+                            required: true,
+                        })}></Textarea>
+                        {errors.content && errors.content.type === 'required' && (
+                            <p className='text-red-500 font-bold'>გთხოვთ, შეიყვანოთ ტექსტი</p>
+                        )}
+
                     </div>
                     <Button type='submit' className="mt-6 " >
                         { isMutatingNewsEdit ? <Loader.ThreeDots color="red" height={10} /> : "შენახვა" }

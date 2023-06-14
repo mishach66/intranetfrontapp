@@ -38,6 +38,7 @@ export const getPagedBranchList = async (pageNumber) => {
 }
 // ---------------------------------- Branch List Pagination----------------------------
 
+
 // ---------------------------------- Edit Branch ------------------------------------
 export const editBranch = async (data) => {
   console.log('api data is ', data)
@@ -56,3 +57,17 @@ if(!response.ok) {
 return await response.json()
 }
 // ---------------------------------- Edit Branch ------------------------------------
+
+
+// ---------------------------------- Remove Branch ------------------------------------
+export const removeBranch = async (id) => {
+  const response = await fetch(`https://localhost:7071/api/Branch/deleteBranch/${id}`, {method: "DELETE"})
+        
+  if(!response.ok) {
+    throw new Error(response.json().message)
+  }
+
+  return true
+}
+// ---------------------------------- Remove Branch ------------------------------------
+
