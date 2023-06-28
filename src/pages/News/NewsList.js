@@ -40,7 +40,6 @@ const NewsList = () => {
         <div className="">
             {
                 data?.map(({author, title, content, id}) => (
-
                     // <div key={id} className='line-clamp-4 border-b-4 border-red-300'>
                     //     <span className="font-bold">{author}</span> -- <span className="font-semibold">{title}</span> -- 
                     //     <Link to={`/newsById/${id}`} >
