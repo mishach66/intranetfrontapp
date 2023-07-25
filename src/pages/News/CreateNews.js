@@ -9,7 +9,7 @@ import { useQuery, QueryClient, useQueries, useMutation, useQueryClient } from "
 
 // const createNews = async (data) => {
 //     console.log('onSubmit დატა არის  ' + data.title + ' ' + data.author + ' ' + data.content + ' ' + data.date + ' ' + data.hyperlink )
-//     const response = await fetch('https://localhost:7071/api/News/createNews', {
+//     const response = await fetch('https://mhrp2.azurewebsites.net/api/News/createNews', {
 //     method: "POST",
 //     headers: {
 //         "Content-Type": "application/json"
@@ -39,7 +39,7 @@ function CreateNews() {
     // const { mutateAsync, isLoading } = useMutation(createNews)
     const { mutateAsync, isLoading: isMutatingNewsAdd } = useMutation(
         async (data) => {
-            const response = await fetch('https://localhost:7071/api/News/createNews', {
+            const response = await fetch('https://mhrp2.azurewebsites.net/api/News/createNews', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

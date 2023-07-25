@@ -1,7 +1,7 @@
 // ---------------------------------- Get all News ------------------------------------
 // 
 export const getAllNews = async () => {
-    const response = await fetch('https://localhost:7071/api/News/allNews');
+    const response = await fetch('https://mhrp2.azurewebsites.net/api/News/allNews');
     if (!response.ok) {
       throw new Error("Something went wrong.");
     }
@@ -12,7 +12,7 @@ export const getAllNews = async () => {
 // -------------------------------- Get News by Id ------------------------------------
 // export const getNewsById = async ({ queryKey }) => {
 //     const [_key, { id }] = queryKey
-//     const response = await fetch(`https://localhost:7071/api/News/newsById/${id}`);
+//     const response = await fetch(`https://mhrp2.azurewebsites.net/api/News/newsById/${id}`);
     
 //     if (!response.ok) {
 //       throw new Error("Something went wrong.");
@@ -22,7 +22,7 @@ export const getAllNews = async () => {
 // }
 
 export const getNewsById = async ({id}) => {
-    const response = await fetch(`https://localhost:7071/api/News/newsById/${id}`)
+    const response = await fetch(`https://mhrp2.azurewebsites.net/api/News/newsById/${id}`)
     if (!response.ok) {
       throw new Error("Something went wrong.")
     }

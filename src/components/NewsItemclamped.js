@@ -17,7 +17,7 @@ export const NewsItemclamped = (props) => {
     let editButtonclicked = false
     
     const { mutateAsync, isLoading: isMutatingNewsDelete } = useMutation(async (id) => {
-        const response = await fetch(`https://localhost:7071/api/News/deleteNews/${id}`, {method: "DELETE"})
+        const response = await fetch(`https://mhrp2.azurewebsites.net/api/News/deleteNews/${id}`, {method: "DELETE"})
     
         if(!response.ok) {
         throw new Error(response.json().message)

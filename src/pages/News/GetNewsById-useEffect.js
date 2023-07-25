@@ -8,7 +8,7 @@ function GetNewsById() {
     const {id} = useParams()
     //console.log({id})
     useEffect(() => {
-        axios.get(`https://localhost:7071/api/News/newsById/${id}`)
+        axios.get(`https://mhrp2.azurewebsites.net/api/News/newsById/${id}`)
             .then((response) => setStatus(response.data));
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }, []);

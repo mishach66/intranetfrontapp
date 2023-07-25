@@ -14,9 +14,9 @@ function CreateNews() {
             hyperlink: "https://www.ox.ac.uk/news/2022-11-24-new-research-facility-launches-develop-next-generation-advanced-functional-materials"
           };
         
-        // const res = axios.post('https://localhost:7071/api/News/createNews', news)
+        // const res = axios.post('https://mhrp2.azurewebsites.net/api/News/createNews', news)
         //     .then(response => setNewsId(response.data.id));
-        const res = axios.post('https://localhost:7071/api/News/createNews', news)
+        const res = axios.post('https://mhrp2.azurewebsites.net/api/News/createNews', news)
         .then(response => console.log(response));
         
         //console.log('newsId is equal to: ' + newsId)

@@ -7,7 +7,7 @@ import Timeout from "await-timeout";
 import { getAllNews } from "../../newsApi"
 
 // const getAllNews = async () => {
-//     const response = await fetch('https://localhost:7071/api/News/allNews');
+//     const response = await fetch('https://mhrp2.azurewebsites.net/api/News/allNews');
 //     if (!response.ok) {
 //       throw new Error("Something went wrong.");
 //     }

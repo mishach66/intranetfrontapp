@@ -13,7 +13,7 @@ function EditNews() {
 
     const newsById = async ({ queryKey }) => {
         const [_key, { id }] = queryKey
-        const response = await fetch(`https://localhost:7071/api/News/newsById/${id}`);
+        const response = await fetch(`https://mhrp2.azurewebsites.net/api/News/newsById/${id}`);
         
         if (!response.ok) {
           throw new Error("Something went wrong.");
@@ -27,7 +27,7 @@ function EditNews() {
 
     const { mutateAsync, isLoading: isMutatingNewsEdit } = useMutation(
         async (data) => {
-            const response = await fetch(`https://localhost:7071/api/News/editNews/${id}`, {
+            const response = await fetch(`https://mhrp2.azurewebsites.net/api/News/editNews/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
