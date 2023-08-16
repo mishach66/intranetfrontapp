@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 
 const newsById = async ({ queryKey }) => {
     const [_key, { id }] = queryKey
-    const response = await fetch(`https://mhrp2.azurewebsites.net/api/News/newsById/${id}`);
+    const response = await fetch(`https://localhost:7071/api/News/newsById/${id}`);
     
     if (!response.ok) {
       throw new Error("Something went wrong.");
@@ -18,7 +18,7 @@ const newsById = async ({ queryKey }) => {
 }
 
 // const removeNews = async (id) => {
-//     const response = await fetch(`https://mhrp2.azurewebsites.net/api/News/deleteNews/${id}`, {method: "DELETE"})
+//     const response = await fetch(`https://localhost:7071/api/News/deleteNews/${id}`, {method: "DELETE"})
   
 //     if(!response.ok) {
 //       throw new Error(response.json().message)
@@ -36,7 +36,7 @@ function GetNewsById() {
     
     //const { mutateAsync } = useMutation(removeNews)
     const { mutateAsync } = useMutation(async (id) => {
-        const response = await fetch(`https://mhrp2.azurewebsites.net/api/News/deleteNews/${id}`, {method: "DELETE"})
+        const response = await fetch(`https://localhost:7071/api/News/deleteNews/${id}`, {method: "DELETE"})
       
         if(!response.ok) {
           throw new Error(response.json().message)

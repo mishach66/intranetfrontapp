@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useQuery, QueryClient, useQueries, useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from 'axios';
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams, useNavigate, useLocation } from 'react-router-dom'
 import Moment from 'react-moment'
 import { Button } from '../../components/Button'
 import Swal from 'sweetalert2'
@@ -12,7 +12,7 @@ import { getNewsById } from '../../newsApi'
 
 // const getNewsById = async ({ id }) => {
     
-//     const response = await fetch(`https://mhrp2.azurewebsites.net/api/News/newsById/${id}`)
+//     const response = await fetch(`https://localhost:7071/api/News/newsById/${id}`)
     
 //     if (!response.ok) {
 //       throw new Error("Something went wrong.")
@@ -26,6 +26,9 @@ function GetNewsById() {
     const {id} = useParams()
     const navigate = useNavigate()
     const queryClient = useQueryClient()
+    const location = useLocation()
+
+    const { title, author, content } = location.state
     let editButtonclicked = false
 
     // const [ newsByIdQuery ] = useQueries({
@@ -50,7 +53,7 @@ function GetNewsById() {
     
     //const { mutateAsync } = useMutation(removeNews)
     const { mutateAsync } = useMutation(async (id) => {
-        const response = await fetch(`https://mhrp2.azurewebsites.net/api/News/deleteNews/${id}`, {method: "DELETE"})
+        const response = await fetch(`https://localhost:7071/api/News/deleteNews/${id}`, {method: "DELETE"})
       
         if(!response.ok) {
           throw new Error(response.json().message)
@@ -138,7 +141,7 @@ function GetNewsById() {
             <div className='flex justify-between'>
                 <div className='w-1/3'>
                     <Button onClick={editButtonHandlerClick}>
-                        <Link to={`/EditNews/${id}`} className='hover:text-lg hover:text-inherit'>
+                        <Link to={`/EditNews/${id}`} state={{title, author, content}}  className='hover:text-lg hover:text-inherit'>
                             <div className=''>
                                 { editButtonclicked ? <Loader.ThreeDots color="red" height={10} /> : "რედაქტირება" }
                             </div>

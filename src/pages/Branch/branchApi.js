@@ -1,6 +1,6 @@
 // ---------------------------------- Get all Cities -----------------------------------
 export const getAllCities = async () => {
-    const response = await fetch('https://mhrp2.azurewebsites.net/api/City/allCities');
+    const response = await fetch('https://localhost:7071/api/City/allCities');
     if (!response.ok) {
       throw new Error("Something went wrong.");
     }
@@ -11,7 +11,7 @@ export const getAllCities = async () => {
 
 // ---------------------------------- Create Branch ------------------------------------
 export const createBranch = async (data) => {
-  const response = await fetch('https://mhrp2.azurewebsites.net/api/Branch/createBranch', {
+  const response = await fetch('https://localhost:7071/api/Branch/createBranch', {
   method: "POST",
   headers: {
       "Content-Type": "application/json"
@@ -30,7 +30,7 @@ return await response.json()
 
 // ---------------------------------- Branch List Pagination----------------------------
 export const getPagedBranchList = async (pageNumber) => {
-  const response = await fetch(`https://mhrp2.azurewebsites.net/api/Branch/allBranches?PageNumber=${pageNumber}`);
+  const response = await fetch(`https://localhost:7071/api/Branch/allBranches?PageNumber=${pageNumber}`);
   if (!response.ok) {
     throw new Error("Something went wrong.");
   }
@@ -42,7 +42,7 @@ export const getPagedBranchList = async (pageNumber) => {
 // ---------------------------------- Edit Branch ------------------------------------
 export const editBranch = async (data) => {
   console.log('api data is ', data)
-  const response = await fetch(`https://mhrp2.azurewebsites.net/api/Branch/editBranch/${data.id}`, {
+  const response = await fetch(`https://localhost:7071/api/Branch/editBranch/${data.id}`, {
   method: "PUT",
   headers: {
       "Content-Type": "application/json"
@@ -61,7 +61,7 @@ return await response.json()
 
 // ---------------------------------- Remove Branch ------------------------------------
 export const removeBranch = async (id) => {
-  const response = await fetch(`https://mhrp2.azurewebsites.net/api/Branch/deleteBranch/${id}`, {method: "DELETE"})
+  const response = await fetch(`https://localhost:7071/api/Branch/deleteBranch/${id}`, {method: "DELETE"})
         
   if(!response.ok) {
     throw new Error(response.json().message)

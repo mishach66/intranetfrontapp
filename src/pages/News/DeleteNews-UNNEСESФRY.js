@@ -11,7 +11,7 @@ function DeleteNews() {
 
     // useEffect(() => {
     //     // DELETE request using axios inside useEffect React hook
-    //     axios.delete('https://mhrp2.azurewebsites.net/api/News/deleteNews/8AE01EB0-C033-4B1C-B12E-A5DC002364FD')
+    //     axios.delete('https://localhost:7071/api/News/deleteNews/8AE01EB0-C033-4B1C-B12E-A5DC002364FD')
     //         .then(() => setStatus('Deleted successfully!'));
 
     // // empty dependency array means this effect will only run once (like componentDidMount in classes)

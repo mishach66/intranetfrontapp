@@ -83,7 +83,7 @@ const EditBranch = () => {
         //reset()
         navigate('/branchlist/')
     }
-
+    
     return (
         <div className='mx-auto w-4/5 min-h-[calc(100vh-267px)]'>
         <Card color="transparent" shadow={false} className='mt-2'>

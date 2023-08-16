@@ -17,7 +17,7 @@ export const NewsItemclamped = (props) => {
     let editButtonclicked = false
     
     const { mutateAsync, isLoading: isMutatingNewsDelete } = useMutation(async (id) => {
-        const response = await fetch(`https://mhrp2.azurewebsites.net/api/News/deleteNews/${id}`, {method: "DELETE"})
+        const response = await fetch(`https://localhost:7071/api/News/deleteNews/${id}`, {method: "DELETE"})
     
         if(!response.ok) {
         throw new Error(response.json().message)
@@ -72,7 +72,7 @@ export const NewsItemclamped = (props) => {
                         <div className="font-bold  m-1 py-1 px-2 bg-[#ff4e4e] opacity-100 border rounded-t-lg text-white">{props.author}</div>
                         <div className="font-semibold py-1 pl-2 text-gray-900">{props.title}</div>
                         <Tooltip className='bg-indigo-800 text-white text-md p-2' content="გაიგე მეტი...">
-                            <Link to={`/newsById/${id}`} >
+                            <Link to={`/newsById/${id}`} state={{title: props.title, author: props.author, content: props.content}} >
                                 {/* <span className="inline-block px-2 italic text-justify ">{props.content}</span> */}
                                 <div >
                                     <div className="text-transparent bg-clip-text bg-gradient-to-b from-gray-900 to-gray-300 px-2 italic text-justify hover:text-[#f56a6a] line-clamp-4">{props.content}</div>
@@ -87,7 +87,7 @@ export const NewsItemclamped = (props) => {
                     <div className='flex justify-between'>
                         <div className='w-1/3 '>
                             <Button onClick={editButtonHandlerClick} >
-                                <Link to={`/EditNews/${id}`} className='hover:text-lg hover:text-inherit'>
+                                <Link to={`/EditNews/${id}`} state={{title: props.title, author: props.author, content: props.content}} className='hover:text-lg hover:text-inherit'>
                                     <div className=''>
                                         { editButtonclicked ? <Loader.ThreeDots color="red" height={10} /> : "რედაქტირება" }
                                     </div>

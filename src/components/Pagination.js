@@ -13,7 +13,8 @@ export default function Pagination() {
     queryFn: () => getPagedBranchList(active), 
     keepPreviousData: true
    })
-  
+   console.log("pagedbranchlist data: " ,data)
+
   const getItemProps = (index) =>
     ({
       variant: active === index ? "filled" : "text",
