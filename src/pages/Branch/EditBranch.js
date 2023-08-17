@@ -65,7 +65,7 @@ const EditBranch = () => {
     editBranch,
     {
       onSuccess: () => {
-        // queryClient.invalidateQueries(['allnews'])
+        //queryClient.invalidateQueries(['pagedbranchlist'])
         toast.success("ფილიალი წარმატებით დარედაქტირდა", {
           theme: "colored",
         });
@@ -88,18 +88,22 @@ const EditBranch = () => {
     setValue,
   } = useForm({
     defaultValues: {
-      city: city.value,
+      // city: city.value,
+      // city: city.value.name, // ერორზე გადის
+      // city: city,
       address: address,
     },
   });
 
   const onSubmit = async (data) => {
-    await console.log("Submitted data is ", data);
+    console.log("Submitted data is ", data);
 
     await mutateAsync({
       id: id,
       address: data.address,
-      fullAddress: data.city ? `${data.city.name}, ${data.address}` : `${city.name}, ${address}`,
+      fullAddress: data.city
+        ? `${data.city.name}, ${data.address}`
+        : `${city.name}, ${address}`,
       cityId: data.city ? data.city.id : cityId,
     });
     //reset()
@@ -124,7 +128,9 @@ const EditBranch = () => {
               // rules={{
               //     required: 'გთხოვთ, მიუთითოთ ქალაქი'
               // }}
+
               defaultValue={currentCity?.value}
+              
               render={({
                 field: { onChange, value = currentCity?.value },
                 fieldState: { error },
@@ -151,7 +157,7 @@ const EditBranch = () => {
             <Input
               size="lg"
               label="მისამართი"
-              defaultValue={address}
+              // defaultValue={address}
               className="text-[#607d8b] "
               {...register("address", {
                 required: true,
