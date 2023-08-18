@@ -28,7 +28,7 @@ const EditBranch = () => {
   const queryClient = useQueryClient();
   const location = useLocation();
   const { fullAddress, address, id, cityId, city } = location.state;
-  // console.log("EditBranch city", city);
+  console.log("EditBranch city: ", city);
   //--------------------------------------------------------------------------------------------
   const { data, error, isLoading, isError } = useQuery(
     ["allcities"],
@@ -65,7 +65,7 @@ const EditBranch = () => {
     editBranch,
     {
       onSuccess: () => {
-        //queryClient.invalidateQueries(['pagedbranchlist'])
+        queryClient.invalidateQueries(['pagedbranchlist'])
         toast.success("ფილიალი წარმატებით დარედაქტირდა", {
           theme: "colored",
         });
@@ -103,7 +103,7 @@ const EditBranch = () => {
       address: data.address,
       fullAddress: data.city
         ? `${data.city.name}, ${data.address}`
-        : `${city.name}, ${address}`,
+        : `${city.name}, ${data.address}`,
       cityId: data.city ? data.city.id : cityId,
     });
     //reset()
@@ -130,7 +130,7 @@ const EditBranch = () => {
               // }}
 
               defaultValue={currentCity?.value}
-              
+
               render={({
                 field: { onChange, value = currentCity?.value },
                 fieldState: { error },
