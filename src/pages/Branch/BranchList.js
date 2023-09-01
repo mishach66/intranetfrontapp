@@ -15,8 +15,6 @@ const BranchList = () => {
                     <Pagination />
                 </Card>
             </div>
-
-            
         </div>
     )
 }
