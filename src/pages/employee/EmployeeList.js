@@ -27,7 +27,7 @@ export const EmployeeList = () => {
   //   queryKey: ["allemployees"],
   //   queryFn: ({ pageParam = 1 }) => getAllEmployees(pageParam, LIMIT),
   // });
-  // // console.log("Employees list", data);
+  // console.log("Employees list", data);
 
   // ----------------------- INFINITE QUERY ---------------------
   const {
