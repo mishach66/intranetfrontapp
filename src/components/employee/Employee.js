@@ -57,7 +57,10 @@ export const Employee = forwardRef(({ employee, index }, ref) => {
   );
 
   const content = ref ? (
-    <article className="article" ref={ref} style={{ backgroundColor: isEven && "#F5F6F7" }}>
+    <article
+      className="article"
+      ref={ref}
+    >
       {employeeContent}
     </article>
   ) : (
