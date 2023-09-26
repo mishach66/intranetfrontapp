@@ -21,6 +21,7 @@ import { Route, Routes } from "react-router-dom";
 import BranchList from "./pages/Branch/BranchList";
 import { EditBranch } from "./pages/Branch/EditBranch";
 import { EmployeeList } from "./pages/employee";
+import { AddEmployee } from "./pages/employee";
 
 function App() {
   // const queryClient = new QueryClient()
@@ -46,6 +47,7 @@ function App() {
           <Route path="/editBranch/:id" element={<EditBranch />} />
 
           <Route path="/employeeList/" element={<EmployeeList />} />
+          <Route path="/addEmployee/" element={<AddEmployee />} />
         </Routes>
         <ToastContainer position="bottom-right" autoClose={3000} />
       </Layout>

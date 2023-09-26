@@ -39,6 +39,11 @@ function MenuSidebar() {
                 ფილიალის დამატება
               </div>
             </Link>
+            <Link to={"/addEmployee/"}>
+              <div className="mb-2 pb-3 hover:text-[#f56a6a] border-b-[1px] border-[#a8abad]">
+                თანამშრომლის დამატება
+              </div>
+            </Link>
             <Link to={"/"}>
               <div className="mb-2 pb-3 hover:text-[#f56a6a] border-b-[1px] border-[#a8abad]">
                 ვაკანსიის დამატება

@@ -39,6 +39,17 @@ export const getPagedBranchList = async (pageNumber) => {
 // ---------------------------------- Branch List Pagination----------------------------
 
 
+// ---------------------------------- All Branch List -------------------------------
+export const getBranchList = async () => {
+  const response = await fetch('https://localhost:7071/api/Branch/allBranchesWithoutPagination');
+  if (!response.ok) {
+    throw new Error("Something went wrong.");
+  }
+  return await response.json()
+}
+// ---------------------------------- All Branch List -------------------------------
+
+
 // ---------------------------------- Edit Branch ------------------------------------
 export const editBranch = async (data) => {
   console.log('api data is ', data)

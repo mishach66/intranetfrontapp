@@ -28,7 +28,7 @@ const EditBranch = () => {
   const queryClient = useQueryClient();
   const location = useLocation();
   const { fullAddress, address, id, cityId, city } = location.state;
-  console.log("EditBranch city: ", city);
+  //console.log("EditBranch city: ", city);
   //--------------------------------------------------------------------------------------------
   const { data, error, isLoading, isError } = useQuery(
     ["allcities"],
@@ -59,7 +59,7 @@ const EditBranch = () => {
   options = capitalCity.concat(options);
 
   const currentCity = options.find((el) => el.value.id === cityId);
-  console.log("currentCity is ", currentCity);
+  //console.log("currentCity is ", currentCity);
 
   const { mutateAsync, isLoading: isMutatingBranchAdd } = useMutation(
     editBranch,
@@ -96,7 +96,7 @@ const EditBranch = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log("Submitted data is ", data);
+    //console.log("Submitted data is ", data);
 
     await mutateAsync({
       id: id,
@@ -135,7 +135,7 @@ const EditBranch = () => {
                 field: { onChange, value = currentCity?.value },
                 fieldState: { error },
               }) => (
-                console.log("Controller value არის ", value),
+                //console.log("Controller value არის ", value),
                 (
                   <div>
                     <Select

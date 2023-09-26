@@ -1,145 +1,194 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios';
-import { Card, Input, Checkbox, Button as MTButton, Typography, Textarea } from "@material-tailwind/react"
-import { Button } from '../../components/Button'
-import { useForm, useController } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import * as Loader from "react-loader-spinner"
-import { useQuery, QueryClient, useQueries, useMutation, useQueryClient } from "@tanstack/react-query"
-import Select, { StylesConfig } from 'react-select'
-import { getAllCities, createBranch } from './branchApi'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import {
+  Card,
+  Input,
+  Checkbox,
+  Button as MTButton,
+  Typography,
+  Textarea,
+} from "@material-tailwind/react";
+import { Button } from "../../components/Button";
+import { useForm, useController } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import * as Loader from "react-loader-spinner";
+import {
+  useQuery,
+  QueryClient,
+  useQueries,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
+import Select, { StylesConfig } from "react-select";
+import { getAllCities, createBranch } from "./branchApi";
 
 function AddBranch() {
-    const queryClient = useQueryClient()
-    const navigate = useNavigate()
-    const { data, error, isLoading, isError } = useQuery(["allcities"], getAllCities, { })
-    
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        reset,
-        control,
-    } = useForm()
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const { data, error, isLoading, isError } = useQuery(
+    ["allcities"],
+    getAllCities,
+    {}
+  );
 
-    const { field } = useController({ name: 'city', control })
-    const { value: cityValue, onChange: cityOnChange, ...restCityField } = field
-    
-    let options = []
-    data?.map((el) => {
-        options.push({
-            value: el,
-            label: el.name
-        })
-    })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    control,
+  } = useForm();
 
-    options.sort((a, b) => {
-        if (a.label < b.label) {
-            return -1
-        } else if (a.label > b.label) {
-            return 1
-        }
-        return 0
-    })
-    const capitalCityName = 'თბილისი'
-    const findCapitalCityIdx = options.findIndex(el => el.label === capitalCityName)
-    const capitalCity = options.splice(findCapitalCityIdx, 1)
-    options = capitalCity.concat(options)
+  const { field } = useController({ name: "city", control });
+  const { value: cityValue, onChange: cityOnChange, ...restCityField } = field;
 
-    const { mutateAsync, isLoading: isMutatingBranchAdd } = useMutation(createBranch, {
-        onSuccess: () => {
-            // queryClient.invalidateQueries(['allnews'])
-            toast.success('ფილიალი წარმატებით დაემატა', {
-                theme: 'colored'
-            })},
-        onError: () => {
-            toast.error('ფილიალის დამატებისას მოხდა შეცდომა!', {
-                theme: 'colored'
-            })}
-    })
+  let options = [];
+  data?.map((el) => {
+    options.push({
+      value: el,
+      label: el.name,
+    });
+  });
 
-    const onSubmit = async (data) => {
-        await mutateAsync({
-            "address": data.address,
-            "fullAddress": `${data.city.name}, ${data.address}`,
-            "cityId": data.city.id
-        })
-        reset()
-        //navigate('/')
+  options.sort((a, b) => {
+    if (a.label < b.label) {
+      return -1;
+    } else if (a.label > b.label) {
+      return 1;
     }
+    return 0;
+  });
+  const capitalCityName = "თბილისი";
+  const findCapitalCityIdx = options.findIndex(
+    (el) => el.label === capitalCityName
+  );
+  const capitalCity = options.splice(findCapitalCityIdx, 1);
+  options = capitalCity.concat(options);
 
-    return (
-        <div className='mx-auto w-4/5 min-h-[calc(100vh-267px)]'>
-            <Card color="transparent" shadow={false} className='mt-2'>
-                <Typography variant="h4" color="blue-gray">
-                    ფილიალის დამატება
-                </Typography>
+  const { mutateAsync, isLoading: isMutatingBranchAdd } = useMutation(
+    createBranch,
+    {
+      onSuccess: () => {
+        // queryClient.invalidateQueries(['allnews'])
+        toast.success("ფილიალი წარმატებით დაემატა", {
+          theme: "colored",
+        });
+      },
+      onError: () => {
+        toast.error("ფილიალის დამატებისას მოხდა შეცდომა!", {
+          theme: "colored",
+        });
+      },
+    }
+  );
 
-                <form onSubmit={handleSubmit(onSubmit)} className="mt-4 mb-2 w-100 max-w-screen-lg sm:w-96">
-                    <div className="mb-4 flex flex-col gap-6">
+  const onSubmit = async (data) => {
+    await mutateAsync({
+      address: data.address,
+      fullAddress: `${data.city.name}, ${data.address}`,
+      cityId: data.city.id,
+    });
+    reset();
+    //navigate('/')
+  };
 
-                    <Select
-                        styles={{
-                            control: (baseStyles, state) => ({
-                                ...baseStyles,
-                                //borderColor: state.isFocused ? 'red' : '',
-                                borderColor: '#dee2e6',
-                                height: '2.75rem',
-                                borderRadius: 5,
-                                "&:hover": {
-                                    borderColor: "none",
-                                  },
-                                //backgroundColor: 'yellowgreen'
-                                // color: 'red'
-                            }),
-                            option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-                                return {
-                                  ...styles,
-                                  color: '#607d8b',
-                                  //backgroundColor: isDisabled ? 'red' : 'blue',
-                                  //cursor: isDisabled ? 'not-allowed' : 'default'
-                                }
-                            },
-                            singleValue: (defaultStyles) => ({ ...defaultStyles, color: "#607d8b" }),
-                            placeholder: (defaultStyles) => ({ ...defaultStyles, color: "#607d8b" }),
-                        }}
-                        className='select-input text-sm text-[#455a64] '
+  return (
+    <div className="mx-auto w-4/5 min-h-[calc(100vh-267px)]">
+      <Card color="transparent" shadow={false} className="mt-2">
+        <Typography variant="h4" color="blue-gray">
+          ფილიალის დამატება
+        </Typography>
 
-                        {...register('city', {
-                            required: true,
-                        })}
-                        placeholder="ქალაქი"
-                        isClearable
-                        isSearchable
-                        options={options}
-                        value={cityValue ? options.find(x => x.value === cityValue) : null}
-                        defaultValue={options[0]}
-                        // required
-                        onChange={option => cityOnChange(option ? option.value : option)}
-                        {...restCityField}
-                    />
-                    {errors.city && errors.city.type === 'required' && (
-                        <p className='text-red-500 font-bold'>გთხოვთ, მიუთითოთ ქალაქი</p>
-                    )}
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="mt-4 mb-2 w-100 max-w-screen-lg sm:w-96"
+        >
+          <div className="mb-4 flex flex-col gap-6">
+            <Select
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  //borderColor: state.isFocused ? 'red' : '',
+                  borderColor: "#dee2e6",
+                  height: "2.75rem",
+                  borderRadius: 5,
+                  "&:hover": {
+                    borderColor: "none",
+                  },
+                  //backgroundColor: 'yellowgreen'
+                  // color: 'red'
+                }),
+                option: (
+                  styles,
+                  { data, isDisabled, isFocused, isSelected }
+                ) => {
+                  return {
+                    ...styles,
+                    color: "#607d8b",
+                    //backgroundColor: isDisabled ? 'red' : 'blue',
+                    //cursor: isDisabled ? 'not-allowed' : 'default'
+                  };
+                },
+                singleValue: (defaultStyles) => ({
+                  ...defaultStyles,
+                  color: "#607d8b",
+                }),
+                placeholder: (defaultStyles) => ({
+                  ...defaultStyles,
+                  color: "#607d8b",
+                }),
+              }}
+              className="select-input text-sm text-[#455a64] "
+              {...register("city", {
+                required: true,
+              })}
+              placeholder="ქალაქი"
+              isClearable
+              isSearchable
+              options={options}
+              value={
+                cityValue ? options.find((x) => x.value === cityValue) : null
+              }
+              defaultValue={options[0]}
+              // required
+              onChange={(option) =>
+                cityOnChange(option ? option.value : option)
+              }
+              {...restCityField}
+            />
+            {errors.city && errors.city.type === "required" && (
+              <p className="text-red-500 font-bold">გთხოვთ, მიუთითოთ ქალაქი</p>
+            )}
 
-                    <Input size="lg" label="მისამართი" className='text-[#607d8b] ' {...register('address', {
-                            required: true,
-                        })} />
-                    {errors.address && errors.address.type === 'required' && (
-                        <p className='text-red-500 font-bold'>გთხოვთ, მიუთითოთ მისამართი</p>
-                    )}
-                    </div>
+            <Input
+              size="lg"
+              label="მისამართი"
+              className="text-[#607d8b] "
+              {...register("address", {
+                required: true,
+              })}
+            />
+            {errors.address && errors.address.type === "required" && (
+              <p className="text-red-500 font-bold">
+                გთხოვთ, მიუთითოთ მისამართი
+              </p>
+            )}
+          </div>
 
-                    <div >
-                        <Button type='submit' className="mt-6 " fullWidth>
-                            { isMutatingBranchAdd ? <Loader.ThreeDots color="red" height={10} /> : "დამატება" }
-                        </Button>
-                    </div>
-                </form>
-            </Card>
-        </div>
-      )
+          <div>
+            <Button type="submit" className="mt-6 " fullWidth>
+              {isMutatingBranchAdd ? (
+                <Loader.ThreeDots color="red" height={10} />
+              ) : (
+                "დამატება"
+              )}
+            </Button>
+          </div>
+        </form>
+      </Card>
+    </div>
+  );
 }
 
-export { AddBranch }
+export { AddBranch };

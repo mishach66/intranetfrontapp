@@ -23,13 +23,7 @@ export const EmployeeList = () => {
 
   const queryClient = useQueryClient();
 
-  // const { data, error, isLoading, isError } = useQuery({
-  //   queryKey: ["allemployees"],
-  //   queryFn: ({ pageParam = 1 }) => getAllEmployees(pageParam, LIMIT),
-  // });
-  // console.log("Employees list", data);
-
-  // ----------------------- INFINITE QUERY ---------------------
+  // ----------------------- INFINITE QUERY START ---------------------
   const {
     data: infiniteQueryData,
     isSuccess,
@@ -80,31 +74,7 @@ export const EmployeeList = () => {
   if (infiniteQueryIsError) {
     return <span>Error: {infiniteQueryError.message}</span>;
   }
-  // ----------------------- INFINITE QUERY ---------------------
-
-  // return (
-  //   <>
-  //     <div>
-  //       <div className="mx-auto w-4/5 ">
-  //         <Card color="transparent" shadow={false} className="mt-2">
-  //           <Typography variant="h4" color="blue-gray" className="mb-3">
-  //             თანამშრომლების სია
-  //           </Typography>
-
-  //           {infiniteQueryData?.map(({ id, givenname, surname }, index) => (
-  //             <Employee
-  //               key={id}
-  //               id={id}
-  //               givenname={givenname}
-  //               surname={surname}
-  //               index={index}
-  //             />
-  //           ))}
-  //         </Card>
-  //       </div>
-  //     </div>
-  //   </>
-  // );
+  // ----------------------- INFINITE QUERY END ---------------------
 
   return (
     <>
