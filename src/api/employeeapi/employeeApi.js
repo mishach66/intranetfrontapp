@@ -38,21 +38,21 @@ export const createEmployee = async (data) => {
   // }
   // return await response.json();
 
-  const response = await axios.post(
-    "https://localhost:7071/api/Employee/createEmployee",
-    data.empl,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  );
-  if (response.status >= 400 && response.status < 600) {
-    console.log("response status is Error");
+  try {
+    const response = await axios.post(
+      "https://localhost:7071/api/Employee/createEmployee",
+      data.empl,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    console.log("response is:", response);
+    return response;
+  } catch (error) {
+    console.log("catched error status code:", error.response.status);
+    throw new Error(error);
   }
-  else if (response.status >= 200 && response.status < 300) {
-    console.log("response status is OK");
-  } 
-  return response;
 };
 // ---------------------------------- Create Employee ------------------------------------

@@ -63,14 +63,14 @@ export const AddEmployee = () => {
     createEmployee,
     {
       onSuccess: (response) => {
-        console.log("Success", response);
+        console.log("Mutation Success", response);
         // queryClient.invalidateQueries(['suitableQueryKey'])
         toast.success("თანამშრომელი წარმატებით დაემატა", {
           theme: "colored",
         });
       },
       onError: (error) => {
-        console.log("Error", error);
+        console.log("Mutation Error", error);
         toast.error("თანამშრომლის დამატებისას მოხდა შეცდომა!", {
           theme: "colored",
         });
