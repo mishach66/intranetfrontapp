@@ -47,9 +47,12 @@ export const createEmployee = async (data) => {
       },
     }
   );
-  if (!response.statusText === "OK") {
-    throw new Error(response.statusText);
+  if (response.status >= 400 && response.status < 600) {
+    console.log("response status is Error");
   }
-  return response.statusText;
+  else if (response.status >= 200 && response.status < 300) {
+    console.log("response status is OK");
+  } 
+  return response;
 };
 // ---------------------------------- Create Employee ------------------------------------

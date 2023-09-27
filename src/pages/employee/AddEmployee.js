@@ -70,6 +70,7 @@ export const AddEmployee = () => {
         });
       },
       onError: (error) => {
+        console.log("Error", error);
         toast.error("თანამშრომლის დამატებისას მოხდა შეცდომა!", {
           theme: "colored",
         });
