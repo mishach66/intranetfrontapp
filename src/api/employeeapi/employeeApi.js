@@ -20,6 +20,7 @@ export const createEmployee = async (data) => {
   //console.log("employee API data is: ", data);
   //console.log("employee API data.empl is: ", data.empl);
   //console.log("employee API data.empl.Givenname is: ", data.empl.Givenname);
+  console.log("employee API data is: ", data.empl);
 
   // const response = await fetch(
   //   "https://localhost:7071/api/Employee/createEmployee",
@@ -56,3 +57,16 @@ export const createEmployee = async (data) => {
   }
 };
 // ---------------------------------- Create Employee ------------------------------------
+
+
+// ---------------------------------- Get Languages ------------------------------------
+export const getLanguages = async () => {
+  const response = await fetch(
+    `https://localhost:7071/api/LanguageСlassifier/allLanguageСlassifiers`
+  );
+  if (!response.ok) {
+    throw new Error("Something went wrong.");
+  }
+  return await response.json();
+};
+// ---------------------------------- Get Languages ------------------------------------

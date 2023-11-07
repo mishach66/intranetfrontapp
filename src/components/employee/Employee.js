@@ -11,16 +11,19 @@ export const Employee = forwardRef(({ employee, index }, ref) => {
         style={{ backgroundColor: isEven && "#F5F6F7" }}
       >
         <div>
-          <div className="ml-3 font-bold">
+          <div className="ml-3 font-bold text-xl hover:text-red-600 hover:cursor-pointer ">
             {employee.givenname} {employee.surname}
           </div>
-          <div className="ml-3">{employee.position}</div>
+          <div className="ml-3 text-gray-600 ">
+            {employee.branch.fullAddress}
+          </div>
+          <div className="ml-3 text-gray-600 ">{employee.position}</div>
         </div>
 
         <div className="mr-2">
           <img
             src={`${employee.imageName}`}
-            alt="img" 
+            alt="img"
             className="border-0 rounded-full mr-2"
             width="72"
             height="auto"
