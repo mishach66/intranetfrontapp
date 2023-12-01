@@ -391,7 +391,7 @@ export const AddEmployee = () => {
                 // }
 
                 value={selectedLanguageOptions}
-                defaultValue={languagesOptions[0]}
+                //defaultValue={languagesOptions[2]}
                 // required
                 onChange={(options) =>
                   languageOnChange(setSelectedLanguageOptions(options))
